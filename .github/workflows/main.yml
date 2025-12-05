@@ -26,8 +26,9 @@ jobs:
     - name: Empaquetar artefacto
       run: mvn package
 
-    - name: Subir artefacto generado
-      uses: actions/upload-artifact@v3
-      with:
-        name: artefacto-maven
-        path: target/*.jar
+- name: Subir artefacto generado
+  uses: actions/upload-artifact@v4
+  with:
+    name: artefacto-maven
+    path: target/*.jar
+
