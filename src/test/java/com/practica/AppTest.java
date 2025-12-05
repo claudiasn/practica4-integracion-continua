@@ -1,19 +1,19 @@
 package com.practica;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest {
-
-    /**
-     * Rigorous Test :-)
-     */
+public class AppTest 
+{
     @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
+    public void shouldAnswerWithTrue()
+    {
+        // Error intencional para que falle el test
+        assertTrue("Este test debe fallar", false);
+        
+     
     }
 }
+
