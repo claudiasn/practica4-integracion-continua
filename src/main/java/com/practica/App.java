@@ -4,12 +4,17 @@ public class App
 {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        System.out.println("Hello World!");  // código duplicado
+        System.out.println("Hello World!"); // código duplicado
     }
 
-    // Método duplicado para asegurar fallo en SonarCloud
+    // Código duplicado para asegurar fallo en SonarCloud
     public void metodoDuplicado() {
         System.out.println("Hello World!");
-        System.out.println("Hello World!");  // código duplicado
+        System.out.println("Hello World!"); // código duplicado
+    }
+
+    // Error crítico para provocar Quality Gate FAILED
+    public void errorCritico() {
+        int x = 10 / 0; // Bug crítico detectado por SonarCloud
     }
 }
