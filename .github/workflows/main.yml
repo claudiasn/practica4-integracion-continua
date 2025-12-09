@@ -21,9 +21,10 @@ jobs:
           java-version: '17'
 
       - name: Compilar y ejecutar tests
-        run: mvn clean test
+        run: mvn clean test --batch-mode
 
-      - name: Analisis de calidad con SonarCloud
+      # ⭐ AQUÍ VA EL BLOQUE DE SONARCLOUD
+      - name: Análisis de calidad con SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
         with:
           projectBaseDir: .
@@ -34,7 +35,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Empaquetar artefacto
-        run: mvn package
+        run: mvn package -DskipTests
 
       - name: Subir artefacto generado
         uses: actions/upload-artifact@v4
