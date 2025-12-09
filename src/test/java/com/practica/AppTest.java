@@ -11,9 +11,7 @@ public class AppTest
     public void shouldAnswerWithTrue()
     {
         // Error intencional para que falle el test
-        assertTrue("Este test debe fallar", false);
-        
-     
+        assertTrue("El test está forzado a fallar", false);
     }
 }
 
