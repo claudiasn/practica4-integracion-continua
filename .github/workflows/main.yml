@@ -6,3 +6,4 @@
       with:
         name: artefacto-maven
         path: target/*.jar
+
