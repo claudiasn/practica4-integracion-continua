@@ -1,4 +1,4 @@
-name: Integracion Continua
+name: Integración Continua
 
 on:
   push:
@@ -11,32 +11,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout del repositorio
       - name: Checkout del repositorio
         uses: actions/checkout@v3
 
+      # 2. Configurar Java
       - name: Configurar Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '17'
 
+      # 3. Compilar y ejecutar tests
       - name: Compilar y ejecutar tests
-        run: mvn clean test --batch-mode
+        run: mvn -B clean verify
 
-      # ⭐ AQUÍ VA EL BLOQUE DE SONARCLOUD
+      # 4. Análisis de calidad con SonarCloud usando Maven (RECOMENDADO)
       - name: Análisis de calidad con SonarCloud
-        uses: SonarSource/sonarcloud-github-action@master
-        with:
-          projectBaseDir: .
-          args: >
-            -Dsonar.organization=claudiasn
-            -Dsonar.projectKey=claudiasn_practica4-integracion-continua
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          -Dsonar.projectKey=claudiasn_practica4-integracion-continua \
+          -Dsonar.organization=claudiasn \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
+      # 5. Empaquetar artefacto
       - name: Empaquetar artefacto
-        run: mvn package -DskipTests
+        run: mvn -B package
 
+      # 6. Subir artefacto generado
       - name: Subir artefacto generado
         uses: actions/upload-artifact@v4
         with:
