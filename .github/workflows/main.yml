@@ -11,36 +11,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Checkout del repositorio
     - name: Checkout del repositorio
       uses: actions/checkout@v3
 
-    # 2. Configurar Java
     - name: Configurar Java
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
         java-version: '17'
 
-    # 3. Compilar y ejecutar tests
     - name: Compilar y ejecutar tests
       run: mvn -B verify
 
-    # 4. Análisis de calidad con SonarCloud
     - name: Análisis de calidad con SonarCloud
       uses: SonarSource/sonarqube-scan-action@v2
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
         args: >
           -Dsonar.projectKey=claudiasn_practica4-integracion-continua
           -Dsonar.organization=claudiasn
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-    # 5. Empaquetar artefacto
     - name: Empaquetar artefacto
       run: mvn -B package
 
-    # 6. Subir artefacto generado
     - name: Subir artefacto generado
       uses: actions/upload-artifact@v4
       with:
