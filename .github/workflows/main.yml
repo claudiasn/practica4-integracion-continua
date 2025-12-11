@@ -23,15 +23,12 @@ jobs:
     - name: Compilar y ejecutar tests
       run: mvn clean test
 
-    - name: Analisis con SonarCloud
-      uses: SonarSource/sonarcloud-github-action@master
-      with:
-        projectBaseDir: .
-        args: >
-          -Dsonar.organization=claudiasn
-          -Dsonar.projectKey=claudiasn_practica4-integracion-continua
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: Analisis con SonarCloud (via Maven)
+      run: mvn -B verify sonar:sonar \
+        -Dsonar.organization=claudiasn \
+        -Dsonar.projectKey=claudiasn_practica4-integracion-continua \
+        -Dsonar.host.url=https://sonarcloud.io \
+        -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
     - name: Empaquetar artefacto
       run: mvn package
