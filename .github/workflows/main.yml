@@ -1,9 +1,43 @@
+name: Integracion Continua
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del repositorio
+      uses: actions/checkout@v4
+
+    - name: Configurar Java 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Compilar y ejecutar tests
+      run: mvn clean test
+
+    - name: Analisis con SonarCloud
+      uses: SonarSource/sonarcloud-github-action@master
+      with:
+        projectBaseDir: .
+        args: >
+          -Dsonar.organization=claudiasn
+          -Dsonar.projectKey=claudiasn_practica4-integracion-continua
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
     - name: Empaquetar artefacto
-      run: mvn -B package
+      run: mvn package
 
     - name: Subir artefacto generado
       uses: actions/upload-artifact@v4
       with:
         name: artefacto-maven
         path: target/*.jar
-
