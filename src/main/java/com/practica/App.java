@@ -24,7 +24,7 @@ package com.practica;
 public class App 
 {
     public static void main(String[] args) {
-        System.out.println("Hello World!")  // ← SIN punto y coma
+        System.out.println("Hello World!");  // ← SIN punto y coma
         System.out.println("Hello World!"); // esta línea déjala igual
     }
 
