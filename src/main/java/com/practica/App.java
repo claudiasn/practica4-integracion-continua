@@ -25,18 +25,13 @@ public class App
 {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        System.out.println("Hello World!"); // Código duplicado (violación SonarCloud)
+        ejecutarErrorCritico(); // <-- ahora el método problemático SÍ se usa
     }
 
-    // Método duplicado para generar otra violación
-    public void metodoDuplicado() {
-        System.out.println("Hello World!");
-        System.out.println("Hello World!"); // Código duplicado
-    }
-
-    // Error crítico detectado por SonarCloud
-    public void errorCritico() {
-        int x = 10 / 0; // División entre cero (bug crítico)
+    // Método que provoca un bug crítico detectado por SonarCloud
+    public static void ejecutarErrorCritico() {
+        int resultado = 10 / 0; // BUG: división entre cero
+        System.out.println("Resultado: " + resultado);
     }
 }
 
