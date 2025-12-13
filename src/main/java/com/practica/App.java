@@ -24,16 +24,9 @@ package com.practica;
 public class App 
 {
     public static void main(String[] args) {
-        generarErrorCritico();
-    }
-
-    public static void generarErrorCritico() {
-        try {
-            int x = 10 / 0; // división por cero
-        } catch (Exception e) {  // <-- BUG CRÍTICO según SonarCloud
-            System.out.println("Error ignorado");
-        }
+        System.exit(0);  // <-- BUG CRÍTICO: System.exit prohibido por SonarCloud
     }
 }
+
 
 
