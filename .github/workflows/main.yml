@@ -25,11 +25,14 @@ jobs:
 
     - name: Analisis con SonarCloud
       run: |
-        mvn -B sonar:sonar \
-         -Dsonar.projectKey=claudiasn_practica4-integracion-continua \
-         -Dsonar.organization=claudiasn \
-         -Dsonar.host.url=https://sonarcloud.io \
-         -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        mvn -B clean verify sonar:sonar \
+          -Dsonar.projectKey=claudiasn_practica4-integracion-continua \
+          -Dsonar.organization=claudiasn \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.java.binaries=target/classes \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
+
 
     - name: Empaquetar artefacto
       if: ${{ success() }}
