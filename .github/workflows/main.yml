@@ -24,17 +24,18 @@ jobs:
       run: mvn -B clean verify
 
     - name: Analisis con SonarCloud
-      run: |
-        mvn -B clean verify sonar:sonar \
-          -Dsonar.projectKey=claudiasn_practica4-integracion-continua \
-          -Dsonar.organization=claudiasn \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      run: mvn -B sonar:sonar \
+        -Dsonar.projectKey=claudiasn_practica4-integracion-continua \
+        -Dsonar.organization=claudiasn \
+        -Dsonar.host.url=https://sonarcloud.io \
+        -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
     - name: Empaquetar artefacto
+      if: ${{ success() }}   # SOLO si TODO lo anterior ha ido bien
       run: mvn -B package
 
     - name: Subir artefacto generado
+      if: ${{ success() }}
       uses: actions/upload-artifact@v4
       with:
         name: artefacto-maven
