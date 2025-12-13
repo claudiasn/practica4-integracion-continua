@@ -19,8 +19,4 @@ public class App
 
         return -1;
     }
-
-    public void metodoDuplicado() {
-        System.out.println("Hola");
-    }
 }
