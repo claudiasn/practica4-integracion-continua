@@ -24,14 +24,15 @@ package com.practica;
 public class App 
 {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        ejecutarErrorCritico(); // <-- ahora el método problemático SÍ se usa
+        generarErrorCritico();
     }
 
-    // Método que provoca un bug crítico detectado por SonarCloud
-    public static void ejecutarErrorCritico() {
-        int resultado = 10 / 0; // BUG: división entre cero
-        System.out.println("Resultado: " + resultado);
+    public static void generarErrorCritico() {
+        try {
+            int x = 10 / 0; // división por cero
+        } catch (Exception e) {  // <-- BUG CRÍTICO según SonarCloud
+            System.out.println("Error ignorado");
+        }
     }
 }
 
