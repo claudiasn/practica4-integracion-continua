@@ -4,14 +4,18 @@ public class App
 {
     public static void main(String[] args) {
         App app = new App();
-        app.errorCritico();
+        app.errorCritico();  // <-- Bug crítico ejecutándose
     }
 
-    // BUG CRÍTICO REAL: división entre cero
+    // ERROR CRÍTICO: división entre cero
     public int errorCritico() {
-        int a = 10;
-        int b = 0;
-        return a / b;   // <-- CRITICAL: Division by zero (sonar-java:S3516)
+        int x = 10 / 0; // SonarCloud lo marca como "Bug crítico"
+        return x;
+    }
+
+    // DUPLICACIÓN PARA WARNING EXTRA
+    public void duplicado() {
+        System.out.println("Hola");
+        System.out.println("Hola");
     }
 }
-
