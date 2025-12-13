@@ -24,17 +24,20 @@ package com.practica;
 public class App 
 {
     public static void main(String[] args) {
-        System.out.println("Hello World!");  // ← SIN punto y coma
-        System.out.println("Hello World!"); // esta línea déjala igual
+        System.out.println("Hello World!");
+        System.out.println("Hello World!"); // Código duplicado (violación SonarCloud)
     }
 
+    // Método duplicado para generar otra violación
     public void metodoDuplicado() {
         System.out.println("Hello World!");
-        System.out.println("Hello World!");
+        System.out.println("Hello World!"); // Código duplicado
     }
 
+    // Error crítico detectado por SonarCloud
     public void errorCritico() {
-        int x = 10 / 0;
+        int x = 10 / 0; // División entre cero (bug crítico)
     }
 }
+
 
