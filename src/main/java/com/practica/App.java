@@ -2,19 +2,16 @@ package com.practica;
 
 public class App {
 
+    // Método simple sin code smells ni errores
+    public int calcular() {
+        return 5 + 3;
+    }
+
     public static void main(String[] args) {
         App app = new App();
         System.out.println(app.calcular());
     }
-
-    /**
-     * Método de ejemplo que realiza una operación simple.
-     * @return resultado de la operación
-     */
-    public int calcular() {
-        int a = 5;
-        int b = 1;
-
-        return a / b;
-    }
 }
+
+
+
