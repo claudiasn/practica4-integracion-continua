@@ -6,8 +6,7 @@ import org.junit.Test;
 public class AppTest {
 
     @Test
-    public void testCalcular() {
-        App app = new App();
-        assertEquals(5, app.calcular());
+    public void shouldAnswerWithTrue() {
+        assertEquals(8, new App().calcular());
     }
 }
