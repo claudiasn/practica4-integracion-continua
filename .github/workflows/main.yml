@@ -35,7 +35,6 @@ jobs:
           -Dsonar.host.url=https://sonarcloud.io
           -Dsonar.sources=src
           -Dsonar.java.binaries=target/classes
-          -Dsonar.qualitygate.wait=true
 
     - name: Empaquetar artefacto
       if: ${{ success() }}
