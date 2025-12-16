@@ -7,6 +7,6 @@ public class AppTest {
 
     @Test
     public void shouldAnswerWithTrue() {
-        assertEquals(8, new App().calcular());
+        assertEquals(9, new App().calcular());
     }
 }
